@@ -4,7 +4,7 @@
 
 	<groupId>jp.igapyon.diary.v3.plugin</groupId>
 	<artifactId>igdiary-maven-plugin</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>igdiary-maven-plugin Maven Plugin</name>
@@ -43,15 +43,10 @@
 		<dependency>
 			<groupId>jp.igapyon.diary.v3</groupId>
 			<artifactId>IgapyonV3</artifactId>
-			<version>1.3.0</version>
+			<version>[1.3.0,2.0)</version>
 		</dependency>
-
 	</dependencies>
 
-	<!-- ===================================== -->
-	<!-- blanco Framework standard maven defs. -->
-	<!-- v201612251240 ....................... -->
-	<!-- ===================================== -->
 	<repositories>
 		<!-- igapyon repository -->
 		<repository>
