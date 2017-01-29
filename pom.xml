@@ -40,13 +40,11 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- 
 		<dependency>
 			<groupId>jp.igapyon.diary.v3</groupId>
 			<artifactId>IgapyonV3</artifactId>
 			<version>1.3.0</version>
 		</dependency>
- -->
 
 	</dependencies>
 
@@ -72,4 +70,26 @@
 		</repository>
 	</distributionManagement>
 
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <!-- see http://jira.codehaus.org/browse/MNG-5346 -->
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>mojo-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
