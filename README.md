@@ -1,2 +1,0 @@
-# igdiary-maven-plugin
-aaa
