@@ -10,6 +10,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import jp.igapyon.diary.v3.IgDiaryProcessor;
+
 /**
  * Goal which touches a timestamp file.
  *
@@ -24,6 +26,25 @@ public class MyMojo extends AbstractMojo {
 	private File outputDirectory;
 
 	public void execute() throws MojoExecutionException {
+
+		if (true) {
+			try {
+				// カレントディレクトリを取得のうえ正規化します。
+				final File rootdir = new File(".").getCanonicalFile();
+				if (rootdir.getName().equals("diary") == false) {
+					System.err.println(
+							"安全装置：処理停止。期待とは違うディレクトリで実行されました。このプログラムは diary ディレクトリでの実行を前提とします。:" + rootdir.getName());
+					return;
+				}
+
+				// 基本処理。
+				new IgDiaryProcessor().process(rootdir);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		File f = outputDirectory;
 
 		if (!f.exists()) {
