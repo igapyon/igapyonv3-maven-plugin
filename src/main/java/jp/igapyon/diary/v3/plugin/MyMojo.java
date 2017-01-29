@@ -13,9 +13,8 @@ import org.apache.maven.plugins.annotations.Parameter;
 import jp.igapyon.diary.v3.IgDiaryProcessor;
 
 /**
- * Goal which touches a timestamp file.
- *
- * @deprecated Don't use!
+ * mvn jp.igapyon.diary.v3.plugin:igdiary-maven-plugin:1.0:touch
+ * 
  */
 @Mojo(name = "touch", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class MyMojo extends AbstractMojo {
