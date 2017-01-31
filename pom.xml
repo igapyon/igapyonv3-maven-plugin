@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>jp.igapyon.diary.plugin</groupId>
-	<artifactId>igdiary-maven-plugin</artifactId>
+	<groupId>jp.igapyon.diary.igapyonv3.plugin</groupId>
+	<artifactId>igapyonv3-maven-plugin</artifactId>
 	<version>1.0</version>
 	<packaging>maven-plugin</packaging>
 
@@ -59,8 +59,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>jp.igapyon.diary.v3</groupId>
-			<artifactId>IgapyonV3</artifactId>
+			<groupId>jp.igapyon.diary</groupId>
+			<artifactId>igapyonv3</artifactId>
 			<version>[1.3.0,2.0)</version>
 		</dependency>
 	</dependencies>
