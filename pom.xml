@@ -78,8 +78,8 @@
 
 		<repository>
 			<id>sonatype</id>
-			<name>sonatype maven release repos</name>
-			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+			<name>sonatype maven public repos include SNAPSHOT</name>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
 		</repository>
 	</repositories>
 
