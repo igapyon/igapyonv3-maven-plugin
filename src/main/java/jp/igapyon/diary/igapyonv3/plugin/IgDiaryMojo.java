@@ -31,7 +31,7 @@
  *  limitations under the License.
  */
 
-package jp.igapyon.diary.v3.plugin;
+package jp.igapyon.diary.igapyonv3.plugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 
-import jp.igapyon.diary.v3.IgDiaryProcessor;
+import jp.igapyon.diary.igapyonv3.IgDiaryProcessor;
 
 /**
  * mvn jp.igapyon.diary.v3.plugin:igdiary-maven-plugin:1.0:igdiary
