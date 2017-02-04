@@ -3,7 +3,7 @@
 
 	<groupId>jp.igapyon.diary.igapyonv3.plugin</groupId>
 	<artifactId>igapyonv3-maven-plugin</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
+	<version>1.0.7-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>igapyonv3 diary system - igapyonv3 Maven Plugin</name>
@@ -89,15 +89,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>[4.12,5.0)</version>
-		</dependency>
-
-		<!-- RSS parser -->
-		<!-- https://mvnrepository.com/artifact/com.rometools/rome -->
-		<dependency>
-			<groupId>com.rometools</groupId>
-			<artifactId>rome</artifactId>
-			<version>1.7.1</version>
+			<version>4.12</version>
 		</dependency>
 	</dependencies>
 
@@ -109,21 +101,6 @@
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
-
-	<repositories>
-		<!-- igapyon repository -->
-		<repository>
-			<id>igapyon</id>
-			<name>igapyon maven repos</name>
-			<url>https://igapyon.github.io/igapyon-maven2</url>
-		</repository>
-
-		<repository>
-			<id>sonatype</id>
-			<name>sonatype maven public repos with SNAPSHOT</name>
-			<url>https://oss.sonatype.org/content/groups/public/</url>
-		</repository>
-	</repositories>
 
 	<build>
 		<plugins>
