@@ -27,15 +27,37 @@
 
 	<scm>
 		<url>https://github.com/igapyon/igapyonv3-maven-plugin</url>
+		<connection>scm:git:https://github.com/igapyon/igapyonv3-maven-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com/igapyon/igapyonv3-maven-plugin.git</developerConnection>
+		<tag>HEAD</tag>
 	</scm>
 
-	<properties>
-		<!-- set source as UTF-8 -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<developers>
+		<developer>
+			<id>igapyon</id>
+			<name>Toshiki Iga</name>
+			<email>igapyon@gmail.com</email>
+			<url>http://www.igapyon.jp/</url>
+			<roles>
+				<role>lead</role>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>-9</timezone>
+		</developer>
+	</developers>
 
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-	</properties>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+			</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencies>
 		<!-- igapyonv3 core -->
@@ -50,24 +72,36 @@
 			<artifactId>maven-plugin-api</artifactId>
 			<version>3.3.9</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
 			<artifactId>maven-plugin-annotations</artifactId>
 			<version>3.5</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.codehaus.plexus</groupId>
 			<artifactId>plexus-utils</artifactId>
 			<version>3.0.24</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<scope>test</scope>
+			<version>[4.12,5.0)</version>
 		</dependency>
 	</dependencies>
+
+	<!-- basic spec for jar -->
+	<properties>
+		<!-- set source as UTF-8 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+	</properties>
 
 	<repositories>
 		<!-- igapyon repository -->
@@ -84,18 +118,85 @@
 		</repository>
 	</repositories>
 
-	<distributionManagement>
-		<!-- deploy into local repository for github -->
-		<repository>
-			<id>deploy-repository</id>
-			<name>deployRepository</name>
-			<!-- <url>file:///${project.basedir}/../igapyon-maven2</url> -->
-			<url>file:///tmp/igapyon-maven2</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
 		<plugins>
+			<!-- compile as JDK 1.6 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<!-- create sources.jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<configuration>
+					<author>true</author>
+					<source>1.6</source>
+					<locale>en</locale>
+					<showPackage>true</showPackage>
+					<charset>utf-8</charset>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- gpg -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- for sonatype -->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-plugin-plugin</artifactId>
