@@ -3,7 +3,7 @@
 
 	<groupId>jp.igapyon.diary.igapyonv3.plugin</groupId>
 	<artifactId>igapyonv3-maven-plugin</artifactId>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.6-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>igapyonv3 diary system - igapyonv3 Maven Plugin</name>
@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>jp.igapyon.diary</groupId>
 			<artifactId>igapyonv3</artifactId>
-			<version>1.4.0.5</version>
+			<version>1.4.0.8</version>
 		</dependency>
 
 		<dependency>
