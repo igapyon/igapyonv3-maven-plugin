@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>jp.igapyon.diary</groupId>
 			<artifactId>igapyonv3</artifactId>
-			<version>1.4.1.0</version>
+			<version>1.4.1.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
