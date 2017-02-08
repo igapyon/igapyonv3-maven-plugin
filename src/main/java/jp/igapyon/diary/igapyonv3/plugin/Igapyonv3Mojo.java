@@ -44,7 +44,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import jp.igapyon.diary.igapyonv3.IgDiaryProcessor;
 
 /**
- * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:1.0:igdiary
+ * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:1.1.0.4-SNAPSHOT:igapyonv3
  */
 @Mojo(name = "igapyonv3")
 public class Igapyonv3Mojo extends AbstractMojo {
