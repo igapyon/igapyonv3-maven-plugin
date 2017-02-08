@@ -41,14 +41,12 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import jp.igapyon.diary.igapyonv3.IgDiaryProcessor;
-
 /**
- * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:igapyonv3
+ * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:init
  */
-@Mojo(name = "igapyonv3")
-public class Igapyonv3Mojo extends AbstractMojo {
-	@Parameter(property = "igapyonv3.basedir", defaultValue = ".")
+@Mojo(name = "init")
+public class InitMojo extends AbstractMojo {
+	@Parameter(property = "init.basedir", defaultValue = ".")
 	private String basedir;
 
 	public void execute() throws MojoExecutionException {
@@ -59,8 +57,9 @@ public class Igapyonv3Mojo extends AbstractMojo {
 			// カレントディレクトリを取得のうえ正規化します。
 			final File rootdir = new File(basedir).getCanonicalFile();
 
+			System.err.println("init called.: basedir=" + basedir);
 			// 基本処理。
-			new IgDiaryProcessor().process(rootdir);
+			// new IgDiaryProcessor().process(rootdir);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new MojoExecutionException("Error processing: ", e);
