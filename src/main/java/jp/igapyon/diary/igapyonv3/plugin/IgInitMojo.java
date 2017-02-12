@@ -47,17 +47,18 @@ import jp.igapyon.diary.igapyonv3.init.IgInitDiaryDir;
  * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:init
  */
 @Mojo(name = "init")
-public class InitMojo extends AbstractMojo {
-	@Parameter(property = "init.basedir", defaultValue = ".")
-	private String basedir;
+public class IgInitMojo extends AbstractMojo {
+	@Parameter(property = "init.basedir", defaultValue = "${project.basedir}")
+	private File basedir;
 
 	public void execute() throws MojoExecutionException {
 		try {
+			System.err.println("igapyonv3-maven-plugin: init: basedir: " + basedir.getAbsolutePath());
 			if (basedir == null) {
-				basedir = ".";
+				basedir = new File(".");
 			}
-			// カレントディレクトリを取得のうえ正規化します。
-			final File rootdir = new File(basedir).getCanonicalFile();
+			// do normalize
+			final File rootdir = basedir.getCanonicalFile();
 
 			System.err.println("init called.: basedir=" + basedir);
 

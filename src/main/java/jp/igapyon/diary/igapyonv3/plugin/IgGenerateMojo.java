@@ -53,11 +53,11 @@ public class IgGenerateMojo extends AbstractMojo {
 
 	public void execute() throws MojoExecutionException {
 		try {
-			System.err.println("igapyonv3-maven-plugin: basedir: " + basedir.getAbsolutePath());
+			System.err.println("igapyonv3-maven-plugin: generate: basedir: " + basedir.getAbsolutePath());
 			if (basedir == null) {
 				basedir = new File(".");
 			}
-			// カレントディレクトリを取得のうえ正規化します。
+			// do normalize
 			final File rootdir = basedir.getCanonicalFile();
 
 			// 基本処理。
