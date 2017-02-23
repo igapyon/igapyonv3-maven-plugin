@@ -61,7 +61,7 @@ public class IgGenerateMojo extends AbstractMojo {
 			final File rootdir = basedir.getCanonicalFile();
 
 			// 基本処理。
-			new IgDiaryProcessor().process(rootdir);
+			new IgDiaryProcessor(rootdir).process();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new MojoExecutionException("Error processing: ", e);
