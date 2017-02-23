@@ -41,7 +41,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import jp.igapyon.diary.igapyonv3.init.IgInitDiaryDir;
+import jp.igapyon.diary.igapyonv3.inittemplate.IgInittemplateDiaryDir;
 
 /**
  * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:inittemplate
@@ -62,7 +62,7 @@ public class IgInittemplateMojo extends AbstractMojo {
 
 			System.err.println("inittemplate called.: basedir=" + basedir);
 
-			new IgInitDiaryDir(rootdir).process();
+			new IgInittemplateDiaryDir(rootdir).process();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new MojoExecutionException("Error processing: ", e);
