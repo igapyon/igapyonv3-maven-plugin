@@ -7,7 +7,7 @@
 	<packaging>maven-plugin</packaging>
 
 	<name>igapyonv3 diary system - igapyonv3 Maven Plugin</name>
-	<description>OSS diary generator system written in Java.</description>
+	<description>igapyonv3 is a static site/blog generator for developers written in Java.</description>
 	<url>https://github.com/igapyon/igapyonv3-maven-plugin</url>
 
 	<!-- license -->
