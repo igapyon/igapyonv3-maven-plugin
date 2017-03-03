@@ -40,6 +40,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
 import jp.igapyon.diary.igapyonv3.IgDiaryProcessor;
 
@@ -51,14 +52,25 @@ public class IgGenerateMojo extends AbstractMojo {
 	@Parameter(property = "generate.basedir", defaultValue = "${project.basedir}")
 	private File basedir;
 
+	@Parameter(property = "generate.outputhtmldir")
+	private File outputhtmldir;
+
 	public void execute() throws MojoExecutionException {
 		try {
-			System.err.println("igapyonv3-maven-plugin: generate: basedir: " + basedir.getAbsolutePath());
 			if (basedir == null) {
 				basedir = new File(".");
 			}
+			System.err.println("igapyonv3-maven-plugin: generate: basedir: " + basedir.getAbsolutePath());
+
 			// do normalize
 			final File rootdir = basedir.getCanonicalFile();
+
+			if (outputhtmldir == null) {
+				final MavenProject mavenProject = (MavenProject) getPluginContext().get("project");
+				outputhtmldir = new File(mavenProject.getBuild().getDirectory() + "/html");
+			}
+
+			System.err.println("TRACE: " + outputhtmldir.toString());
 
 			// 基本処理。
 			new IgDiaryProcessor(rootdir).process();
