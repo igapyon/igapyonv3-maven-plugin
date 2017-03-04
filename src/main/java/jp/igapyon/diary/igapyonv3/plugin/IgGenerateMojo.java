@@ -43,6 +43,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import jp.igapyon.diary.igapyonv3.IgDiaryProcessor;
+import jp.igapyon.diary.igapyonv3.util.IgapyonV3Settings;
 
 /**
  * mvn jp.igapyon.diary.igapyonv3.plugin:igapyonv3-maven-plugin:generate
@@ -70,10 +71,12 @@ public class IgGenerateMojo extends AbstractMojo {
 				outputhtmldir = new File(mavenProject.getBuild().getDirectory() + "/html");
 			}
 
-			System.err.println("TRACE: " + outputhtmldir.toString());
-
 			// 基本処理。
-			new IgDiaryProcessor(rootdir).process();
+			final IgapyonV3Settings settings = new IgapyonV3Settings();
+			settings.setRootdir(rootdir);
+			settings.setOutputhtmldir(outputhtmldir);
+
+			new IgDiaryProcessor(settings).process();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new MojoExecutionException("Error processing: ", e);
