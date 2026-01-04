@@ -59,6 +59,21 @@ Inittemplate (テンプレート初期化):
 - `jp.igapyon.diary:igapyonv3` (コア実装)
 - Maven プラグイン API およびアノテーション
 
+プラグインから呼び出される本体クラス
+------------------------------------
+実際にプラグインが呼び出す igapyonv3 本体クラスは次のとおりです。
+
+- `generate` ゴール
+  - `jp.igapyon.diary.igapyonv3.util.IgapyonV3Settings` を生成して設定します。
+  - `jp.igapyon.diary.igapyonv3.IgDiaryProcessor#process` を実行します。
+- `init` ゴール
+  - `jp.igapyon.diary.igapyonv3.init.IgInitDiaryDir#process` を実行します。
+- `inittemplate` ゴール
+  - `jp.igapyon.diary.igapyonv3.inittemplate.IgInittemplateDiaryDir#process` を実行します。
+
+補足: Maven 側の `org.apache.maven.project.MavenProject` を使って
+`outputhtmldir` の既定値を解決します。
+
 igapyonv3 本体の内部構造 (参考)
 ------------------------------
 本プラグインが呼び出す igapyonv3 本体側の処理概要を、簡潔にまとめます。
@@ -71,13 +86,20 @@ igapyonv3 本体の内部構造 (参考)
 主な処理フロー (IgDiaryProcessor)
 ---------------------------------
 1. `settings.src.md` の読み込みと展開
-2. 今日の日記の自動生成 (設定で有効化時)
-3. `keyword` / `memo` ディレクトリの作成
-4. インデックス用 Atom の生成
-5. キーワード用 Atom の生成
-6. 必要に応じてキーワード `.md` の生成
-7. `.src.md` → `.md` / `.html.md` 変換
+2. `keyword` / `memo` ディレクトリの作成
+3. インデックス用 Atom の生成
+4. キーワード用 Atom の生成
+5. 必要に応じてキーワード `.md` の生成
+6. `.src.md` → `.md` / `.html.md` 変換
+7. 今日の日記の自動生成 (設定で有効化時)
 8. Markdown → HTML 変換 (設定で有効化時)
+
+補足: 設定で増える処理
+----------------------
+- `setGeneratetodaydiary("true")` の場合
+  - 今日の日記テンプレートを自動生成します。
+- `setConvertmarkdown2html("true")` の場合
+  - `.md` から `.html` への変換を実行します。
 
 主要クラス
 ----------
